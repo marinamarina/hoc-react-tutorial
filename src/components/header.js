@@ -1,12 +1,21 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router'
+import * as actions from '../actions/'
+import {connect} from 'react-redux'
 
 class Header extends Component {
-  authButton() {
-    return (<button>Sign In</button>)  
+  authButton(authStatus) {
+    const msg = authStatus ? 'Sign Out' : 'Sign In'
+
+    return (<button onClick={() => this.props.setAuthenticationStatus(!authStatus)} >
+                {msg}
+            </button>)  
   }
 
   render() {
+    const { authStatus, } = this.props
+    //console.log(this.props)
+
     return (
       <nav className="navbar navbar-light">
         <ul className="nav navbar-nav">
@@ -17,7 +26,7 @@ class Header extends Component {
             <Link to="/resources">Auth Resources</Link>
           </li>
           <li className="nav-item">
-            {this.authButton()}
+            {this.authButton(authStatus)}
           </li>
         </ul>
       </nav>
@@ -25,4 +34,10 @@ class Header extends Component {
   }
 }
 
-export default Header
+function mapStateToProps(state) {
+  return {
+    authStatus: state.authenticationStatus
+  }
+}
+
+export default connect(mapStateToProps, actions)(Header)
