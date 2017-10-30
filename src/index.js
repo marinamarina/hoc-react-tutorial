@@ -5,6 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import {Router, Route, browserHistory} from 'react-router'
 
 import Authentication from './components/requreAuth'
+import AboutUs from './components/aboutUs'
 import Resources from './components/resources'
 import Home from './components/Home'
 import App from './components/app';
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route component={App}>
         <Route path="/" component={Home} />
         <Route path="/resources" component={Authentication(Resources)} />
+        <Route path="/about-us" component={AboutUs} />
       </Route>
 
     </Router>
