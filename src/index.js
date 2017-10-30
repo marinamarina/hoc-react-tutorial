@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import {Router, Route, browserHistory} from 'react-router'
 
+import Authentication from './components/requreAuth'
 import Resources from './components/resources'
 import Home from './components/Home'
 import App from './components/app';
@@ -16,7 +17,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route component={App}>
         <Route path="/" component={Home} />
-        <Route path="/resources" component={Resources} />
+        <Route path="/resources" component={Authentication(Resources)} />
       </Route>
 
     </Router>
